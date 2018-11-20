@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_location_latlon_tree" model="ir.ui.view">
+        <field name="name">location.latlon.tree</field>
+        <field name="model">location.latlon</field>
+        <field name="priority">2</field>
+        <field name="arch" type="xml">
+            <tree string="Location Lat Lon">
+                <field name="name"/>
+                <field name="lattitude"/>
+                <field name="longitude"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_location_latlon_form" model="ir.ui.view">
+        <field name="name">location.latlon.form</field>
+        <field name="model">location.latlon</field>
+        <field name="arch" type="xml">
+            <form string="Location Lat Lon">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+							<field name="lattitude"/>
+							<field name="longitude"/>
+							<field name="state"/>
+							<button name="get_gps_location" class="btn btn-danger" string="GPS" type="object" invisible="1"/> 
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <button name="another_button" class="btn btn-danger" string="Button" type="object"/> 
+                        </group>
+                        <group>
+							<div class="o_row" style="color:#628B61;font-size:12px;text-align:center">
+								<button string="GPS" id ="adel" class="o_adel" name="click" type="object" custom="click"/>
+								<br/>
+							</div> 
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_location_latlon" model="ir.actions.act_window">
+        <field name="name">Location Lat Lon</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">location.latlon</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain"></field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create Locations
+            </p><p>
+                Locations
+            </p>
+        </field>
+    </record>
+    
+    <menuitem name="Location" id="custom_top_menu" sequence="1"/>
+    
+    <menuitem name="Location" id="custom_sub_menu" parent="custom_top_menu" sequence="1"/>
+
+    <menuitem name="GPS" id="location_menu" parent="custom_sub_menu" action="action_location_latlon" sequence="1"/>
+
+
+</odoo>
